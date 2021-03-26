@@ -22,3 +22,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+require __DIR__.'/admin/product.php';
+require __DIR__.'/product.php';
+require __DIR__.'/order.php';
