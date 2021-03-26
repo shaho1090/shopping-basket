@@ -13,8 +13,13 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            //
+        Schema::create('orders', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('product_id')->constrained('products','id');
+            $table->foreignId('user_id')->constrained('users','id');
+            $table->unsignedInteger('quantity');
+            $table->string('code');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('orders');
     }
 }
