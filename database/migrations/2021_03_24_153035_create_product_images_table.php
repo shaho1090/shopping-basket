@@ -13,8 +13,12 @@ class CreateProductImagesTable extends Migration
      */
     public function up()
     {
-        Schema::table('product_images', function (Blueprint $table) {
-            //
+        Schema::create('product_images', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('product_id')->constrained('products','id')
+                ->cascadeOnDelete();
+            $table->string('url');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class CreateProductImagesTable extends Migration
      */
     public function down()
     {
-        Schema::table('product_images', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('product_images');
     }
 }
